@@ -1,5 +1,7 @@
 # FakeGuard — Instagram Fake Account Detection
 
+Click hereto see Website !
+https://fakeprofile-frontend-rho.vercel.app/index.html
 A final year project web application for detecting fake Instagram profiles using machine learning.
 
 ---
@@ -135,6 +137,3 @@ Outputs will be saved to `ml/ml_output/`:
 
 ---
 
-## Author
-
-Built as a Final Year Project — 2024–25
