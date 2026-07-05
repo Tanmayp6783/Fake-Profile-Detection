@@ -2,6 +2,7 @@
 
 Click hereto see Website !
 https://fakeprofile-frontend-rho.vercel.app/index.html
+
 A final year project web application for detecting fake Instagram profiles using machine learning.
 
 ---
