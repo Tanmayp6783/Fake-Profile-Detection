@@ -1,0 +1,610 @@
+/* ============================================
+   FakeGuard — dashboard.css
+   ============================================ */
+
+/* ---- Global Fix ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ---- Layout ---- */
+body {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand .brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.nav-item svg {
+  flex-shrink: 0;
+}
+
+/* ---- Bottom ---- */
+.sidebar-bottom {
+  padding: 16px 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.theme-toggle,
+.signout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.theme-toggle:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+.signout-btn:hover {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+/* ---- Theme Icons ---- */
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="light"] .icon-sun { display: none; }
+
+[data-theme="dark"] .theme-label::before { content: "Light Mode"; }
+[data-theme="light"] .theme-label::before { content: "Dark Mode"; }
+
+/* ---- Main Content ---- */
+.main-content {
+  margin-left: 240px;
+  flex: 1;
+  padding: 32px;
+  min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+/* ---- Header ---- */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 12px;
+}
+
+/* ---- Stats ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ---- Icons ---- */
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-icon.blue { background: var(--blue-soft); color: var(--accent); }
+.stat-icon.red { background: var(--red-soft); color: var(--red); }
+.stat-icon.green { background: var(--green-soft); color: var(--green); }
+.stat-icon.amber { background: var(--amber-soft); color: var(--amber); }
+
+/* ---- Text ---- */
+.stat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---- Quick Analyze ---- */
+.quick-analyze-bar {
+  display: flex;
+  gap: 12px;
+}
+
+.quick-analyze-bar .field-input {
+  flex: 1;
+}
+
+/* ---- Recent ---- */
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.recent-item:last-child {
+  border-bottom: none;
+}
+
+/* ---- Table ---- */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: 12px;
+}
+
+.history-table tr:hover td {
+  background: var(--surface2);
+}
+
+/* ---- Mobile ---- */
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 80px 16px 24px;
+  }
+
+  .quick-analyze-bar {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Danger ---- */
+.danger-zone {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+/* ---- History Filters ---- */
+.history-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  padding: 7px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.filter-btn:hover {
+  border-color: var(--text-secondary);
+  color: var(--text);
+}
+
+/* ===== Premium Delete Button ===== */
+.delete-row {
+  font-size: 22px;
+  color: rgb(242, 7, 7);
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+/* Icon */
+.delete-row svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: #ef4444;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.delete-row:hover {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  transform: scale(1.08);
+}
+
+/* Hover glow */
+.delete-row:hover svg {
+  stroke: #ff6b6b;
+}
+
+/* Click effect */
+.delete-row:active {
+  transform: scale(0.95);
+}
+/* Default */
+.main-content {
+  margin-left: 240px;
+  transition: all 0.3s ease;
+}
+
+.sidebar {
+  transition: all 0.3s ease;
+}
+/* 🔥 Collapse Button */
+.collapse-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Sidebar collapsed clean look */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed .brand-name,
+.sidebar.collapsed .nav-item span,
+.sidebar.collapsed .theme-label {
+  display: none;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-brand {
+  justify-content: center;
+}
+
+
+.main-content.expanded {
+  margin-left: 70px;
+}
+/* ===== SIDEBAR COLLAPSE FIX ===== */
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+/* Hide all text */
+.sidebar.collapsed .brand-name,
+.sidebar.collapsed .nav-item span,
+.sidebar.collapsed .theme-label,
+.sidebar.collapsed .signout-btn span {
+  display: none !important;
+}
+
+/* Center icons properly */
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+/* Center top logo */
+.sidebar.collapsed .sidebar-brand {
+  justify-content: center;
+}
+
+/* Fix icon alignment */
+.sidebar.collapsed .nav-item svg {
+  margin: 0;
+}
+
+.main-content.expanded {
+  margin-left: 70px;
+}
+/* Fix sidebar header alignment */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Fix collapse button */
+.collapse-btn {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+/* ============================= */
+/* 🔥 FINAL FIX — DO NOT REMOVE ANYTHING ABOVE */
+/* ============================= */
+
+.sidebar.collapsed {
+  width: 70px !important;
+}
+
+.sidebar.collapsed .brand-name,
+.sidebar.collapsed .nav-item span,
+.sidebar.collapsed .theme-label,
+.sidebar.collapsed .signout-btn span {
+  display: none !important;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center !important;
+  padding: 12px 0 !important;
+}
+
+.sidebar.collapsed .sidebar-brand {
+  justify-content: center !important;
+}
+
+.sidebar.collapsed .nav-item svg {
+  margin: 0 !important;
+}
+
+.main-content.expanded {
+  margin-left: 70px !important;
+}
+
+.sidebar-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.collapse-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--text) !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+}
+/* ===== FIX TOP ALIGNMENT (FINAL) ===== */
+
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Fix button position */
+.collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+/* ===== FORCE SHOW SIDEBAR BUTTON ===== */
+
+.collapse-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 32px;
+  height: 32px;
+
+  color: white !important;
+  background: rgba(255,255,255,0.08) !important;
+
+  border-radius: 6px;
+  border: none;
+
+  font-size: 18px;
+  cursor: pointer;
+
+  z-index: 9999 !important;
+  position: relative !important;
+}
+
+/* Ensure it's not hidden inside layout */
+.sidebar-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+/* ============================= */
+/* 🔥 FINAL BRAND NAME FIX */
+/* ============================= */
+
+/* Ensure container is correct */
+.sidebar-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 16px !important;
+}
+
+/* Left group */
+.brand-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: auto !important;
+}
+
+/* 🔥 FORCE TEXT VISIBLE */
+.brand-name {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+/* Hide ONLY when collapsed */
+#sidebar.collapsed .brand-name {
+  display: none !important;
+}
+/* ============================= */
+/* 🔥 COLLAPSED ICON ALIGN FIX */
+/* ============================= */
+
+/* Center the whole header */
+#sidebar.collapsed .sidebar-brand {
+  justify-content: center !important;
+  padding: 16px 0 !important;
+}
+
+/* Center icon group */
+#sidebar.collapsed .brand-left {
+  justify-content: center !important;
+  width: 100%;
+}
+
+/* Hide button in collapsed (optional but cleaner) */
+#sidebar.collapsed .collapse-btn {
+  margin: 0 auto !important;
+}
+
+/* Perfect icon alignment */
+#sidebar.collapsed .brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}

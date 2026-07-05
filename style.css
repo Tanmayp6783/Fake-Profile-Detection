@@ -1,0 +1,848 @@
+/* ============================================
+   FakeGuard — style.css
+   Global variables, resets, shared components
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Syne:wght@700;800&display=swap');
+
+/* ---- CSS Variables ---- */
+:root {
+  --accent: #4F8EF7;
+  --accent-hover: #3a7be0;
+  --accent-soft: rgba(79,142,247,0.12);
+
+  /* Dark theme (default) */
+  --bg: #0e0f14;
+  --surface: #16181f;
+  --surface2: #1d1f28;
+  --border: #272a35;
+  --text: #f0f1f5;
+  --text-muted: #7a7f95;
+  --text-secondary: #a0a5bb;
+  --shadow: 0 4px 24px rgba(0,0,0,0.35);
+  --sidebar-w: 240px;
+
+  --red: #ef4444;
+  --red-soft: rgba(239,68,68,0.12);
+  --green: #22c55e;
+  --green-soft: rgba(34,197,94,0.12);
+  --amber: #f59e0b;
+  --amber-soft: rgba(245,158,11,0.12);
+  --blue-soft: rgba(79,142,247,0.12);
+}
+
+[data-theme="light"] {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface2: #eef1f8;
+  --border: #dde2ef;
+  --text: #111827;
+  --text-muted: #8895b0;
+  --text-secondary: #5a6480;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+ font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+a { text-decoration: none; color: var(--accent); }
+a:hover { opacity: 0.85; }
+
+/* ---- Typography ---- */
+.page-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.page-sub {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 600;
+font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  width: 100%;
+  justify-content: center;
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary.compact { width: auto; padding: 10px 18px; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-outline.full-w { width: 100%; justify-content: center; }
+
+.btn-ghost {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.btn-ghost:hover { background: var(--accent-soft); }
+
+/* ---- Form Elements ---- */
+.field-group { display: flex; flex-direction: column; gap: 6px; }
+.field-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.required { color: var(--red); }
+.optional { color: var(--text-muted); font-weight: 400; }
+
+.field-input {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--text);
+ font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+}
+.field-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.field-input::placeholder { color: var(--text-muted); }
+.field-select { cursor: pointer; }
+.field-textarea { resize: vertical; min-height: 90px; }
+
+.form-error {
+  background: var(--red-soft);
+  color: var(--red);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.form-success {
+  background: var(--green-soft);
+  color: var(--green);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ---- Utilities ---- */
+.hidden { display: none !important; }
+
+/* ---- Badge ---- */
+/* ===== Premium Badge Base ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect (subtle premium feel) */
+.badge:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+/* 🔴 Fake */
+.badge-fake {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.15);
+}
+
+/* 🟡 Suspicious */
+.badge-suspicious {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(245, 158, 11, 0.05));
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.15);
+}
+
+/* 🟢 Real */
+.badge-real {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(34, 197, 94, 0.05));
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.15);
+}
+@keyframes badgePulse {
+  0% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+  50% { box-shadow: 0 0 10px rgba(255,255,255,0.08); }
+  100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+}
+
+.badge {
+  animation: badgePulse 2.5s infinite;
+}
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  z-index: 9999;
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ---- Empty State ---- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ---- Form Grid ---- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.form-grid .full { grid-column: 1 / -1; }
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full { grid-column: 1; }
+}
+
+/* Clean headings */
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+h2, h3 {
+  font-weight: 600;
+}
+
+/* Improve readability */
+body {
+  line-height: 1.5;
+}
+.stat-val {
+  font-weight: 600;
+}
+
+.section-title {
+  font-weight: 600;
+}
+/* ============================= */
+/* 🔥 GLOBAL TYPOGRAPHY SYSTEM */
+/* ============================= */
+
+
+h1 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+
+h2, h3 {
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stat-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;        /* 🔥 increase size */
+  font-weight: 700;       /* bold premium look */
+  letter-spacing: -0.5px; /* tighter spacing like Apple */
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+button {
+  font-weight: 500;
+}
+
+.nav-item span {
+  font-size: 14px;
+  font-weight: 500;
+}
+/* ============================================
+   🔥 NEXT LEVEL UI UPGRADE (SAFE OVERRIDE)
+   ============================================ */
+
+/* --- Background Upgrade --- */
+body {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(79,142,247,0.08), transparent),
+    radial-gradient(circle at 80% 20%, rgba(34,197,94,0.06), transparent),
+    var(--bg);
+}
+
+/* --- Premium Cards --- */
+.section-card {
+  background: rgba(255,255,255,0.03) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06) !important;
+
+  box-shadow: none !important;
+
+  transition: all 0.25s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* --- Improve Typography Feel --- */
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+
+.section-title {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* --- Buttons Upgrade --- */
+.btn-primary {
+  background: linear-gradient(135deg, #4F8EF7, #3a7be0);
+  box-shadow: 0 6px 20px rgba(79,142,247,0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(79,142,247,0.35);
+}
+
+/* --- Input Fields Modern --- */
+.field-input {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.field-input:focus {
+  box-shadow: 0 0 0 3px rgba(79,142,247,0.15);
+}
+
+/* --- Progress Bars Smooth --- */
+.progress-bar {
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+}
+
+.progress-fill {
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+/* --- Sidebar Hover (Premium feel) --- */
+.nav-item {
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateX(4px);
+}
+
+/* --- Result Box Enhancement --- */
+.result-box {
+  border-radius: 14px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.result-box.real {
+  background: linear-gradient(
+    135deg,
+    rgba(34,197,94,0.15),
+    rgba(34,197,94,0.05)
+  );
+}
+
+.result-box.fake {
+  background: linear-gradient(
+    135deg,
+    rgba(239,68,68,0.15),
+    rgba(239,68,68,0.05)
+  );
+}
+
+/* --- Subtle Animation --- */
+.section-card {
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ============================= */
+/* 🎬 GLOBAL MOTION SYSTEM */
+/* ============================= */
+
+* {
+  transition: background 0.25s ease,
+              border-color 0.25s ease,
+              transform 0.2s ease,
+              opacity 0.2s ease;
+}
+
+/* Smooth page entry */
+body {
+  animation: pageFade 0.4s ease;
+}
+
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-card {
+  background: rgba(255,255,255,0.03) !important;
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  transition: all 0.25s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow effect */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+.progress-fill {
+  transition: width 0.6s cubic-bezier(.4,0,.2,1);
+}
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.04)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.sidebar {
+  backdrop-filter: blur(16px);
+}
+
+.nav-item {
+  border-radius: 10px;
+}
+
+.nav-item.active {
+  background: rgba(79,142,247,0.15);
+}
+
+.nav-item:hover {
+  transform: translateX(6px);
+}
+/* ============================= */
+/* 🔥 FINAL LIGHT MODE FIX (CLEAN) */
+/* ============================= */
+
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-muted: #64748b;
+}
+
+/* Override glass cards ONLY in light mode */
+[data-theme="light"] .section-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05) !important;
+  backdrop-filter: none !important;
+}
+
+/* Sidebar clean */
+[data-theme="light"] .sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+/* Button visibility */
+[data-theme="light"] .collapse-btn {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Inputs */
+[data-theme="light"] .field-input {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Nav hover */
+[data-theme="light"] .nav-item:hover {
+  background: #f1f5f9 !important;
+}
+/* ============================================
+   🍎 FINAL LIGHT MODE PREMIUM POLISH (ADD LAST)
+   ============================================ */
+
+/* 1. Soft background (Apple style) */
+[data-theme="light"] body {
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #eef2f7 100%
+  ) !important;
+}
+
+/* 2. Premium card depth */
+[data-theme="light"] .section-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.05),
+    0 10px 30px rgba(0,0,0,0.06) !important;
+
+  border-radius: 14px;
+}
+
+/* 3. Inputs (Notion style) */
+[data-theme="light"] .field-input {
+  background: #f9fafb !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .field-input:focus {
+  background: #ffffff !important;
+  border-color: #4F8EF7 !important;
+  box-shadow: 0 0 0 3px rgba(79,142,247,0.12);
+}
+
+/* 4. Sidebar polish */
+[data-theme="light"] .sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid #e6eaf2 !important;
+}
+
+[data-theme="light"] .nav-item.active {
+  background: #eef2ff !important;
+  color: #4F8EF7 !important;
+}
+
+/* 5. Profile card highlight */
+[data-theme="light"] .profile-card {
+  background: #ffffff;
+  border: 1px solid #e6eaf2;
+
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  border-radius: 16px;
+}
+
+/* 6. Typography polish */
+[data-theme="light"] .page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+[data-theme="light"] .page-sub {
+  color: #64748b;
+}
+
+[data-theme="light"] .section-title {
+  color: #334155;
+  font-size: 15px;
+}
+/* ============================================
+   🧼 CLEAN FINAL DESIGN SYSTEM
+   ============================================ */
+
+/* ---------- BASE TYPOGRAPHY ---------- */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ---------- CARD SYSTEM ---------- */
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: all 0.25s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- BUTTON SYSTEM ---------- */
+.btn-primary {
+  background: linear-gradient(135deg, #4F8EF7, #3a7be0);
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+/* ---------- INPUT SYSTEM ---------- */
+.field-input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.field-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---------- NAV ---------- */
+.nav-item {
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: var(--surface2);
+  transform: translateX(4px);
+}
+
+/* ============================================
+   🌙 DARK MODE (DEFAULT)
+   ============================================ */
+
+body {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(79,142,247,0.08), transparent),
+    radial-gradient(circle at 80% 20%, rgba(34,197,94,0.06), transparent),
+    var(--bg);
+}
+
+/* ============================================
+   ☀️ LIGHT MODE (APPLE / NOTION STYLE)
+   ============================================ */
+
+[data-theme="light"] body {
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #eef2f7 100%
+  );
+}
+
+[data-theme="light"] .section-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.05),
+    0 10px 30px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .field-input {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .field-input:focus {
+  background: #ffffff;
+}
+
+[data-theme="light"] .sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .nav-item.active {
+  background: #e0e7ff;
+}
+.badge-suspicious {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+/* Keep username + badge in same row */
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Prevent badge from going to next line */
+.badge {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* Prevent wrapping inside table */
+td {
+  white-space: nowrap;
+}
+
+/* Better alignment */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  flex-shrink: 0;
+}
+/* Username + badge inline */
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Prevent breaking */
+.badge {
+  white-space: nowrap;
+}
+/* Table alignment fix */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Keep badge clean */
+.badge {
+  display: inline-block;
+  white-space: nowrap;
+}
