@@ -1,0 +1,30 @@
+{
+  "Logistic Regression": {
+    "accuracy": 97.08,
+    "precision": 97.44,
+    "recall": 95.21,
+    "f1": 96.31,
+    "auc": 99.74
+  },
+  "SVM (RBF)": {
+    "accuracy": 99.83,
+    "precision": 99.79,
+    "recall": 99.79,
+    "f1": 99.79,
+    "auc": 100.0
+  },
+  "Gradient Boosting": {
+    "accuracy": 100.0,
+    "precision": 100.0,
+    "recall": 100.0,
+    "f1": 100.0,
+    "auc": 100.0
+  },
+  "Ensemble Voting": {
+    "accuracy": 100.0,
+    "precision": 100.0,
+    "recall": 100.0,
+    "f1": 100.0,
+    "auc": 100.0
+  }
+}
